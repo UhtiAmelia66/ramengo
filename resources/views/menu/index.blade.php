@@ -1,81 +1,108 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
-@php
-    $cart = session('cart', []);
-    $totalQuantity = array_sum(array_column($cart, 'quantity'));
-@endphp
+<h1 class="text-4xl font-bold text-orange-500 mb-8">
 
-<div class="flex justify-between items-center mb-8">
+Daftar Menu 🍜
 
-    <h1 class="text-4xl font-bold text-orange-600">
-        Menu Ramen 🍜
-    </h1>
+</h1>
 
-    <a href="{{ route('menu.create') }}"
-       class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
+<a
+href="{{ route('menu.create') }}"
+class="bg-orange-500 text-white px-5 py-3 rounded-xl inline-block mb-6">
 
-        + Tambah Menu
++ Tambah Menu
 
-    </a>
+</a>
 
-</div>
-
-@if(session('success'))
-
-    <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6">
-        {{ session('success') }}
-    </div>
-
-@endif
-
-<div class="mb-6 flex justify-end">
-
-    <div class="bg-orange-500 text-white px-5 py-3 rounded-xl shadow-lg">
-
-        🛒 {{ $totalQuantity }} item
-
-    </div>
-
-</div>
 
 <div class="grid grid-cols-3 gap-6">
 
-    @forelse($menus as $menu)
+@forelse($menus as $menu)
 
-        <div class="bg-white rounded-2xl shadow-md p-5">
+<div class="bg-white p-6 rounded-2xl shadow">
 
-            <h2 class="text-2xl font-bold mb-2">
-                {{ $menu->nama }}
-            </h2>
+@if($menu->gambar)
 
-            <p class="text-gray-600">
-                {{ $menu->deskripsi }}
-            </p>
+<img
+src="{{ asset('storage/'.$menu->gambar) }}"
+class="w-full h-40 object-cover rounded-xl mb-4">
 
-            <p class="mt-4 text-orange-500 font-bold text-xl">
-                Rp {{ number_format($menu->harga) }}
-            </p>
+@else
 
-            <div class="mt-4 flex justify-end">
+<div class="h-40 bg-orange-100 rounded-xl mb-4 flex items-center justify-center">
 
-                <a href="{{ route('cart.add', $menu->id) }}"
-                   class="bg-orange-500 hover:bg-orange-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl">
+🍜
 
-                    +
+</div>
 
-                </a>
+@endif
 
-            </div>
 
-        </div>
+<h2 class="text-2xl font-bold">
 
-    @empty
+{{ $menu->nama }}
 
-        <p>Belum ada menu.</p>
+</h2>
 
-    @endforelse
+
+<p class="text-gray-500 mb-3">
+
+{{ $menu->deskripsi }}
+
+</p>
+
+
+<p class="text-orange-500 font-bold text-xl mb-4">
+
+Rp {{ number_format($menu->harga) }}
+
+</p>
+
+
+<div class="flex gap-3">
+
+<a
+href="{{ route('menu.edit',$menu->id) }}"
+class="bg-blue-500 text-white px-4 py-2 rounded-xl">
+
+Edit ✏️
+
+</a>
+
+
+<form
+action="{{ route('menu.destroy',$menu->id) }}"
+method="POST">
+
+@csrf
+@method('DELETE')
+
+<button
+type="submit"
+onclick="return confirm('Yakin ingin menghapus menu ini?')"
+class="bg-red-500 text-white px-4 py-2 rounded-xl">
+
+Hapus 🗑️
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+@empty
+
+<div class="col-span-3 bg-white p-6 rounded-xl text-center">
+
+Belum ada menu 🍜
+
+</div>
+
+@endforelse
 
 </div>
 

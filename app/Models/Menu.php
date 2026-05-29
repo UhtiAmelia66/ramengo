@@ -9,7 +9,10 @@ class Menu extends Model
     protected $fillable = [
         'nama',
         'harga',
-        'deskripsi'
+        'deskripsi',
+        'gambar',
+        'kategori'
+
     ];
     public function orders()
 {

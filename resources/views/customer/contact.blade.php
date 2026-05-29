@@ -2,6 +2,7 @@
 
 @section('content')
 
+<<<<<<< HEAD
 <div class="max-w-2xl mx-auto px-6 py-12">
 
     <div class="bg-white shadow-lg rounded-3xl p-8 border border-orange-100">
@@ -43,6 +44,31 @@
         </div>
 
     </div>
+=======
+<div class="bg-white p-8 rounded-3xl shadow">
+
+    @if($content)
+
+        <h1 class="text-4xl font-bold text-orange-500 mb-6">
+            {{ $content->judul }}
+        </h1>
+
+        <p class="text-lg">
+            {{ $content->isi }}
+        </p>
+
+    @else
+
+        <h1 class="text-4xl font-bold text-orange-500 mb-6">
+            Kontak
+        </h1>
+
+        <p class="text-lg text-gray-500">
+            Informasi kontak belum tersedia.
+        </p>
+
+    @endif
+
 
 </div>
 

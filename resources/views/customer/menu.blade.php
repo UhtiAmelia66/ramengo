@@ -11,11 +11,15 @@
     <div>
 
         <h1 class="text-4xl font-bold text-orange-600">
+
             Ramengo 🍜
+
         </h1>
 
         <p class="text-gray-500">
+
             Pesan ramen favoritmu sekarang
+
         </p>
 
     </div>
@@ -29,92 +33,124 @@
 
 </div>
 
+
 <div class="grid grid-cols-3 gap-6">
 
-    @forelse($menus as $menu)
+@forelse($menus as $menu)
 
-        <x-card>
+<x-card>
 
-            <div class="h-40 bg-orange-100 rounded-xl mb-4"></div>
+@if($menu->gambar)
 
-            <h2 class="text-2xl font-bold mb-2">
-                {{ $menu->nama }}
-            </h2>
+<img
+src="{{ asset('storage/'.$menu->gambar) }}"
+class="w-full h-40 object-cover rounded-xl mb-4">
 
-            <p class="text-gray-600 text-sm">
-                {{ $menu->deskripsi }}
-            </p>
+@else
 
-            <div class="mt-4 flex justify-between items-center">
+<div class="h-40 bg-orange-100 rounded-xl mb-4 flex items-center justify-center">
 
-                <p class="text-orange-500 font-bold text-xl">
-                    Rp {{ number_format($menu->harga) }}
-                </p>
+🍜
 
-                @if(isset($cart[$menu->id]))
+</div>
 
-                    <div class="flex items-center gap-3">
+@endif
 
-                        <a href="{{ route('cart.decrease',$menu->id) }}"
-                           class="bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center text-xl transition">
 
-                            -
+<h2 class="text-2xl font-bold mb-2">
 
-                        </a>
+{{ $menu->nama }}
 
-                        <span class="font-bold text-lg">
+</h2>
 
-                            {{ $cart[$menu->id]['quantity'] }}
+<p class="text-sm text-orange-500 font-semibold mb-2">
 
-                        </span>
+{{ $menu->kategori }}
 
-                        <a href="{{ route('cart.add',$menu->id) }}">
+</p>
 
-                            <x-button>
+<p class="text-gray-600 text-sm">
 
-                                +
+{{ $menu->deskripsi }}
 
-                            </x-button>
+</p>
 
-                        </a>
 
-                    </div>
+<div class="mt-4 flex justify-between items-center">
 
-                @else
+<p class="text-orange-500 font-bold text-xl">
 
-                    <a href="{{ route('cart.add',$menu->id) }}">
+Rp {{ number_format($menu->harga) }}
 
-                        <x-button>
+</p>
 
-                            +
 
-                        </x-button>
+@if(isset($cart[$menu->id]))
 
-                    </a>
+<div class="flex items-center gap-3">
 
-                @endif
+<a href="{{ route('cart.decrease',$menu->id) }}"
+class="bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center text-xl">
 
-            </div>
+-
 
-        </x-card>
+</a>
 
-    @empty
 
-        <div class="col-span-3">
+<span class="font-bold text-lg">
 
-            <x-card>
+{{ $cart[$menu->id]['quantity'] }}
 
-                <p class="text-center text-gray-500">
+</span>
 
-                    Belum ada menu 🍜
 
-                </p>
+<a href="{{ route('cart.add',$menu->id) }}">
 
-            </x-card>
+<x-button>
 
-        </div>
++
 
-    @endforelse
+</x-button>
+
+</a>
+
+</div>
+
+@else
+
+<a href="{{ route('cart.add',$menu->id) }}">
+
+<x-button>
+
++
+
+</x-button>
+
+</a>
+
+@endif
+
+</div>
+
+</x-card>
+
+@empty
+
+<div class="col-span-3">
+
+<x-card>
+
+<p class="text-center text-gray-500">
+
+Belum ada menu 🍜
+
+</p>
+
+</x-card>
+
+</div>
+
+@endforelse
 
 </div>
 

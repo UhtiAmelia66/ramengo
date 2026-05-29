@@ -2,25 +2,29 @@
 
 @section('content')
 
-<h1 class="text-4xl font-bold text-orange-500 mb-4">
+<div class="bg-white p-8 rounded-3xl shadow">
 
-Promo 🎉
+    @if($content)
 
-</h1>
+        <h1 class="text-4xl font-bold text-orange-500 mb-6">
+            {{ $content->judul }}
+        </h1>
 
-<div class="bg-white p-6 rounded-2xl shadow">
+        <p class="text-lg">
+            {{ $content->isi }}
+        </p>
 
-    <h2 class="font-bold text-2xl">
+    @else
 
-        Diskon 20%
+        <h1 class="text-4xl font-bold text-orange-500 mb-6">
+            Promo
+        </h1>
 
-    </h2>
+        <p class="text-lg text-gray-500">
+            Belum ada promo yang tersedia saat ini.
+        </p>
 
-    <p>
-
-        Berlaku setiap hari Senin
-
-    </p>
+    @endif
 
 </div>
 

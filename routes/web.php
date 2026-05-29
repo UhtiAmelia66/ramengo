@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\WebsiteContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,14 +83,20 @@ Route::get('/customer/menu', [CustomerController::class,'menu'])
 |--------------------------------------------------------------------------
 */
 
-Route::view('/about','customer.about')
-    ->name('about');
+Route::get(
+    '/about',
+    [CustomerController::class,'about']
+)->name('about');
 
-Route::view('/promo','customer.promo')
-    ->name('promo');
+Route::get(
+    '/promo',
+    [CustomerController::class,'promo']
+)->name('promo');
 
-Route::view('/contact','customer.contact')
-    ->name('contact');
+Route::get(
+    '/contact',
+    [CustomerController::class,'contact']
+)->name('contact');
 
 
 /*
@@ -135,3 +142,28 @@ Route::post(
 
 Route::get('/admin', [AdminController::class,'index'])
     ->name('admin.index');
+
+Route::get(
+    '/admin/content',
+    [WebsiteContentController::class,'index']
+)->name('content.index');
+
+Route::post(
+    '/admin/content/update/{id}',
+    [WebsiteContentController::class,'update']
+)->name('content.update');
+
+Route::get(
+    '/admin/report',
+    [AdminController::class,'report']
+)->name('admin.report');
+
+Route::post(
+    '/admin/content/store',
+    [WebsiteContentController::class,'store']
+)->name('content.store');
+
+Route::post(
+    '/admin/content/delete/{id}',
+    [WebsiteContentController::class,'delete']
+)->name('content.delete');
