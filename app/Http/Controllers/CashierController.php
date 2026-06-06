@@ -9,13 +9,11 @@ class CashierController extends Controller
     public function index()
     {
         $orders = Order::with('menu')
+            ->where('status', '!=', 'Menunggu Dimasak')
             ->latest()
             ->get();
 
-        return view(
-            'cashier.index',
-            compact('orders')
-        );
+        return view('cashier.index', compact('orders'));
     }
 
     public function paid($id)
@@ -23,16 +21,22 @@ class CashierController extends Controller
         $order = Order::findOrFail($id);
 
         $order->update([
-
-            'status' => 'Sedang Dimasak'
-
+            'status' => 'Menunggu Dimasak'
         ]);
 
         return redirect()
             ->back()
-            ->with(
-                'success',
-                'Pembayaran berhasil ✅'
-            );
+            ->with('success', 'Pembayaran berhasil ✅');
+    }
+
+    // ✅ INI YANG KAMU KURANG (RIWAYAT)
+    public function history()
+    {
+        $orders = Order::with('menu')
+            ->where('status', 'Menunggu Dimasak')
+            ->latest()
+            ->get();
+
+        return view('cashier.history', compact('orders'));
     }
 }

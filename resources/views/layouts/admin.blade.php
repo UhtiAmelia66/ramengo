@@ -21,12 +21,15 @@
 
 <h1 class="text-3xl font-bold text-white">
 
-Admin ⚙️
+🍜 RamenGo Admin
 
 </h1>
 
+<div class="flex items-center gap-6">
 
-<div class="flex items-center gap-8">
+<span class="text-white font-semibold">
+    Halo, {{ Auth::user()->name }} 👋
+</span>
 
 <a
 href="{{ route('admin.index') }}"
@@ -36,7 +39,6 @@ Dashboard 📊
 
 </a>
 
-
 <a
 href="{{ route('menu.index') }}"
 class="text-white font-semibold hover:text-orange-100">
@@ -44,7 +46,6 @@ class="text-white font-semibold hover:text-orange-100">
 Menu 🍜
 
 </a>
-
 
 <a
 href="{{ route('content.index') }}"
@@ -54,7 +55,6 @@ Konten Website 📝
 
 </a>
 
-
 <a
 href="{{ route('admin.report') }}"
 class="text-white font-semibold hover:text-orange-100">
@@ -63,21 +63,29 @@ Laporan 📋
 
 </a>
 
-
 <a
-href="#"
-class="bg-white text-orange-500 px-4 py-2 rounded-xl font-bold">
+href="{{ route('profile.edit') }}"
+class="text-white font-semibold hover:text-orange-100">
 
-Logout 🚪
+Profile 👤
 
 </a>
+
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+
+    <button
+        type="submit"
+        class="bg-white text-orange-500 px-4 py-2 rounded-xl font-bold">
+        Logout 🚪
+    </button>
+</form>
 
 </div>
 
 </div>
 
 </nav>
-
 
 <div class="container mx-auto p-8">
 

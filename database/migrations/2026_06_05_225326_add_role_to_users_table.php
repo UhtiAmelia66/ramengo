@@ -8,20 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('menus', function (Blueprint $table) {
-
-            $table->string('kategori')
-                  ->nullable();
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default('admin');
         });
     }
 
     public function down(): void
     {
-        Schema::table('menus', function (Blueprint $table) {
-
-            $table->dropColumn('kategori');
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
         });
     }
 };
