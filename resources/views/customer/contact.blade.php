@@ -2,7 +2,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
 <div class="max-w-2xl mx-auto px-6 py-12">
 
     <div class="bg-white shadow-lg rounded-3xl p-8 border border-orange-100">
@@ -44,7 +43,7 @@
         </div>
 
     </div>
-=======
+
 <div class="bg-white p-8 rounded-3xl shadow">
 
     @if($content)

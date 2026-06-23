@@ -18,37 +18,35 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
             'menu_id' => 'required',
             'nomor_meja' => 'required',
             'quantity' => 'required|numeric|min:1'
-
         ]);
 
         $order = Order::create([
-
             'menu_id' => $validated['menu_id'],
             'nomor_meja' => $validated['nomor_meja'],
             'quantity' => $validated['quantity'],
-            'status' => 'menunggu'
-
+            'status' => 'Menunggu Dimasak'
         ]);
 
-        return redirect()
-            ->route('order.status', $order->id)
-            ->with(
-                'success',
-                'Pesanan berhasil dibuat 🍜'
-            );
+        return redirect('/order-status')
+            ->with('success', 'Pesanan berhasil dibuat 🍜');
     }
 
-    public function status($id)
+    // 🔥 INI YANG DIPAKAI NAVBAR (LIST SEMUA ORDER)
+    public function status()
+    {
+        $orders = Order::latest()->get();
+
+        return view('customer.order-status', compact('orders'));
+    }
+
+    // (OPSIONAL) detail order kalau nanti dibutuhkan
+    public function detail($id)
     {
         $order = Order::findOrFail($id);
 
-        return view(
-            'customer.order-status',
-            compact('order')
-        );
+        return view('customer.order-detail', compact('order'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\WebsiteContent;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -12,19 +13,67 @@ class CustomerController extends Controller
         return view('customer.home');
     }
 
-    public function menu()
+    public function menu(Request $request)
     {
-        $menus = Menu::all();
+        $activeKategori = $request->query('kategori', 'semua');
+        $allowedKategori = ['semua', 'makanan', 'minuman', 'topping'];
 
-        $makanan = $menus->where('kategori', 'Makanan');
-        $minuman = $menus->where('kategori', 'Minuman');
+        if (! in_array($activeKategori, $allowedKategori, true)) {
+            $activeKategori = 'semua';
+        }
+
+        $menusQuery = Menu::query()->latest();
+
+        if ($activeKategori === 'makanan') {
+            $menusQuery->whereNotIn('kategori', ['Minuman', 'Topping']);
+        }
+
+        if ($activeKategori === 'minuman') {
+            $menusQuery->where('kategori', 'Minuman');
+        }
+
+        if ($activeKategori === 'topping') {
+            $menusQuery->where('kategori', 'Topping');
+        }
+
+        $menus = $menusQuery->get();
+        $allMenus = Menu::all();
+
+        // Semua selain minuman dianggap makanan
+        $makanan = $allMenus->whereNotIn('kategori', ['Minuman', 'Topping']);
+
+        // Minuman
+        $minuman = $allMenus->where('kategori', 'Minuman');
+        $topping = $allMenus->where('kategori', 'Topping');
+
+        $kategoriTabs = [
+            'semua' => [
+                'label' => 'Semua',
+                'count' => $allMenus->count(),
+            ],
+            'makanan' => [
+                'label' => 'Makanan',
+                'count' => $makanan->count(),
+            ],
+            'minuman' => [
+                'label' => 'Minuman',
+                'count' => $minuman->count(),
+            ],
+            'topping' => [
+                'label' => 'Topping',
+                'count' => $topping->count(),
+            ],
+        ];
 
         return view(
             'customer.menu',
             compact(
                 'menus',
                 'makanan',
-                'minuman'
+                'minuman',
+                'topping',
+                'activeKategori',
+                'kategoriTabs'
             )
         );
     }

@@ -48,7 +48,7 @@ Route::post('/checkout', [CartController::class,'checkout'])->name('checkout');
 
 Route::get('/order/{id}', [OrderController::class,'create'])->name('order.create');
 Route::post('/order', [OrderController::class,'store'])->name('order.store');
-Route::get('/order-status/{id}', [OrderController::class,'status'])->name('order.status');
+Route::get('/order-status', [OrderController::class,'status']);
 
 /*
 |--------------------------------------------------------------------------

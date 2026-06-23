@@ -28,7 +28,7 @@
 <div class="flex items-center gap-6">
 
 <span class="text-white font-semibold">
-    Halo, {{ Auth::user()->name }} 👋
+   {{ optional(Auth::user())->name }}
 </span>
 
 <a

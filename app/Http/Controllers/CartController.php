@@ -21,99 +21,80 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
-        if(isset($cart[$id]))
-        {
+        if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
-        }
-        else
-        {
+        } else {
             $cart[$id] = [
-
                 'nama' => $menu->nama,
                 'harga' => $menu->harga,
                 'quantity' => 1
-
             ];
         }
 
-        session()->put('cart',$cart);
+        session()->put('cart', $cart);
 
         return redirect()->back();
     }
 
     public function decrease($id)
     {
-        $cart = session()->get('cart',[]);
+        $cart = session()->get('cart', []);
 
-        if(isset($cart[$id]))
-        {
+        if(isset($cart[$id])) {
             $cart[$id]['quantity']--;
 
-            if($cart[$id]['quantity'] <= 0)
-            {
+            if($cart[$id]['quantity'] <= 0) {
                 unset($cart[$id]);
             }
         }
 
-        session()->put('cart',$cart);
+        session()->put('cart', $cart);
 
         return redirect()->back();
     }
 
     public function checkout()
     {
-        $cart = session()->get('cart',[]);
+        $cart = session()->get('cart', []);
 
-        if(empty($cart))
-        {
+        if(empty($cart)) {
             return redirect()
                 ->back()
-                ->with(
-                    'success',
-                    'Keranjang kosong'
-                );
+                ->with('error', 'Keranjang masih kosong');
         }
 
+        // 🔥 hitung total harga
         $total = 0;
 
-        foreach($cart as $item)
-        {
-            $total +=
-                $item['harga']
-                *
-                $item['quantity'];
+        foreach($cart as $item) {
+            $total += $item['harga'] * $item['quantity'];
         }
 
+        // 🔥 CREATE ORDER (STATUS DIKONSISTENKAN)
         $order = Order::create([
-
-            'nomor_meja' => 7,
+            'nomor_meja' => 7, // nanti bisa dari input login/session
             'total_harga' => $total,
-            'status' => 'menunggu'
-
+            'status' => 'Menunggu Dimasak'
         ]);
 
-        foreach($cart as $menuId => $item)
-        {
-            OrderItem::create([
+        // simpan id order terakhir
+        session()->put('last_order_id', $order->id);
 
+        // 🔥 INSERT ORDER ITEMS
+        foreach($cart as $menuId => $item) {
+            OrderItem::create([
                 'order_id' => $order->id,
                 'menu_id' => $menuId,
                 'quantity' => $item['quantity'],
                 'harga' => $item['harga']
-
             ]);
         }
 
+        // kosongkan cart
         session()->forget('cart');
 
-        return redirect()
-            ->route(
-                'order.status',
-                $order->id
-            )
-            ->with(
-                'success',
-                'Pesanan berhasil dibuat 🍜'
-            );
+        // 🔥 FIX: langsung ke halaman status (tanpa route name error)
+        return redirect('/order-status')
+            ->with('success', 'Pesanan berhasil dibuat 🍜');
     }
 }

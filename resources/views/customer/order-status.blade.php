@@ -2,51 +2,76 @@
 
 @section('content')
 
-<div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-lg">
+<div class="max-w-4xl mx-auto">
 
     <h1 class="text-3xl font-bold text-orange-500 mb-6">
-
-        Status Pesanan 🍜
-
+        📦 Status Pesanan
     </h1>
 
-    <div class="bg-orange-100 p-5 rounded-xl mb-6">
+    @if($orders->isEmpty())
 
-        <p class="text-lg">
+        <div class="bg-white p-6 rounded-xl shadow">
+            Belum ada pesanan.
+        </div>
 
-            Nomor Order:
-            <span class="font-bold">
+    @else
 
-                #{{ $order->id }}
+        <div class="space-y-4">
 
-            </span>
+            @foreach($orders as $order)
 
-        </p>
+                <div class="bg-white p-6 rounded-xl shadow flex justify-between items-center">
 
-        <p class="text-lg">
+                    <!-- LEFT -->
+                    <div>
 
-            Nomor Meja:
-            <span class="font-bold">
+                        <div class="font-bold text-lg">
+                            Order #{{ $order->id }}
+                        </div>
 
-                {{ $order->nomor_meja }}
+                        <div class="text-gray-500 text-sm">
+                            Meja {{ $order->nomor_meja }}
+                        </div>
 
-            </span>
+                        <div class="mt-2">
+                            Total: Rp {{ number_format($order->total_harga) }}
+                        </div>
 
-        </p>
+                    </div>
 
-    </div>
+                    <!-- RIGHT STATUS -->
+                    <div>
 
-    <div class="bg-yellow-100 p-4 rounded-xl">
+                        @if($order->status == 'Menunggu Dimasak')
+                            <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full">
+                                ⏳ Menunggu
+                            </span>
 
-        ⏳ Status:
+                        @elseif($order->status == 'Sedang Dimasak')
+                            <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full">
+                                👨‍🍳 Diproses
+                            </span>
 
-        <span class="font-bold">
+                        @elseif($order->status == 'Selesai')
+                            <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full">
+                                ✅ Selesai
+                            </span>
 
-            {{ ucfirst($order->status) }}
+                        @else
+                            <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full">
+                                {{ $order->status }}
+                            </span>
+                        @endif
 
-        </span>
+                    </div>
 
-    </div>
+                </div>
+
+            @endforeach
+
+        </div>
+
+    @endif
 
 </div>
 

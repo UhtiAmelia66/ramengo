@@ -7,19 +7,39 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="bg-gray-100">
+
+    @php
+        $cart = session('cart', []);
+
+        $totalItem = 0;
+        $totalHarga = 0;
+
+        foreach($cart as $item)
+        {
+            $totalItem += $item['quantity'];
+            $totalHarga += $item['harga'] * $item['quantity'];
+        }
+
+        // OPTIONAL: kalau nanti kamu sudah pakai order system
+        $activeOrderCount = session('active_order_count', 0);
+    @endphp
 
     <!-- Navbar Customer -->
     <nav class="bg-white shadow-md">
+
         <div class="container mx-auto px-6">
 
             <div class="flex justify-between items-center h-16">
 
+                <!-- Logo -->
                 <a href="/customer"
                     class="text-2xl font-bold text-orange-500">
                     🍜 RamenGo
                 </a>
 
+                <!-- Menu -->
                 <div class="flex items-center gap-6">
 
                     <a href="/customer"
@@ -47,9 +67,26 @@
                         Contact
                     </a>
 
+                    <!-- STATUS PESANAN -->
+                    <a href="/order-status"
+                        class="relative hover:text-orange-500 font-medium">
+
+                        Status Pesanan
+
+                        @if($activeOrderCount > 0)
+                            <span class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 rounded-full">
+                                {{ $activeOrderCount }}
+                            </span>
+                        @endif
+
+                    </a>
+
+                    <!-- CART -->
                     <a href="/cart"
                         class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
-                        🛒 Cart
+
+                        🛒 Cart ({{ $totalItem }})
+
                     </a>
 
                 </div>
@@ -57,12 +94,45 @@
             </div>
 
         </div>
+
     </nav>
 
     <!-- Content -->
     <main class="container mx-auto px-4 py-6">
+
         @yield('content')
+
     </main>
+
+    <!-- Floating Cart -->
+    @if($totalItem > 0 && request()->is('customer/menu'))
+
+        <a href="/cart"
+            class="fixed bottom-6 right-6 bg-orange-500 hover:bg-orange-600 text-white p-7 rounded-3xl shadow-2xl z-50 transition">
+
+            <div class="text-5xl">
+                🛒
+            </div>
+
+            <div>
+
+                <div class="font-bold text-2xl">
+                    {{ $totalItem }} Item
+                </div>
+
+                <div class="text-lg">
+                    Rp {{ number_format($totalHarga) }}
+                </div>
+
+                <div class="text-sm mt-1 opacity-90">
+                    Lihat Keranjang →
+                </div>
+
+            </div>
+
+        </a>
+
+    @endif
 
 </body>
 </html>

@@ -25,6 +25,28 @@
     </div>
 
     {{-- Daftar Menu Disini --}}
+    @isset($menus)
+        @if($menus->count() > 0)
+            <div class="grid grid-cols-3 gap-6">
+                @foreach ($menus as $menu)
+                    <div class="p-4 border rounded-lg">
+                        <h3 class="font-bold">
+                            {{ $menu->name ?? 'Nama tidak tersedia' }}
+                        </h3>
+
+                        {{-- kalau nanti ada relasi kategori --}}
+                        <p class="text-gray-500">
+                            {{ $menu->category?->name ?? 'Tanpa kategori' }}
+                        </p>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p class="text-center text-gray-500">
+                Menu belum tersedia
+            </p>
+        @endif
+    @endisset
 
 </div>
 
