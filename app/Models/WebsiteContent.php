@@ -10,7 +10,13 @@ class WebsiteContent extends Model
 
         'halaman',
         'judul',
-        'isi'
+        'isi',
+        'poster_path',
+        'is_active'
 
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
     ];
 }
