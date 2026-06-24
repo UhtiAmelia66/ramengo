@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Meja;
 use App\Models\WebsiteContent;
 use Illuminate\Http\Request;
 
@@ -76,6 +77,20 @@ class CustomerController extends Controller
                 'kategoriTabs'
             )
         );
+    }
+
+    public function scanMeja($id)
+    {
+        $meja = Meja::findOrFail($id);
+
+        session([
+            'id_meja' => $meja->id,
+            'nomor_meja' => $meja->nomor_meja,
+        ]);
+
+        return redirect()
+            ->route('customer.menu')
+            ->with('success', 'Anda sedang memesan dari '.$meja->nomor_meja);
     }
 
     public function about()

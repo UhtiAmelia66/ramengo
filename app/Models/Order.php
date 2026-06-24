@@ -9,6 +9,7 @@ class Order extends Model
     protected $fillable = [
 
         'nomor_meja',
+        'meja_id',
         'total_harga',
         'status'
 
@@ -17,6 +18,11 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function meja()
+    {
+        return $this->belongsTo(Meja::class);
     }
 
     public function menu()

@@ -56,6 +56,14 @@ Konten Website 📝
 </a>
 
 <a
+href="{{ route('admin.meja.index') }}"
+class="text-white font-semibold hover:text-orange-100">
+
+Meja
+
+</a>
+
+<a
 href="{{ route('admin.report') }}"
 class="text-white font-semibold hover:text-orange-100">
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminMejaController;
 use App\Http\Controllers\WebsiteContentController;
 
 /*
@@ -58,6 +59,7 @@ Route::get('/order-status', [OrderController::class,'status']);
 
 Route::get('/customer', [CustomerController::class,'index']);
 Route::get('/customer/menu', [CustomerController::class,'menu'])->name('customer.menu');
+Route::get('/table/{id}', [CustomerController::class,'scanMeja'])->name('table.scan');
 
 /*
 |--------------------------------------------------------------------------
@@ -148,6 +150,22 @@ Route::post('/admin/content/update/{id}',
 Route::get('/admin/report',
     [AdminController::class,'report'])
     ->name('admin.report');
+
+Route::get('/admin/meja',
+    [AdminMejaController::class,'index'])
+    ->name('admin.meja.index');
+
+Route::post('/admin/meja',
+    [AdminMejaController::class,'store'])
+    ->name('admin.meja.store');
+
+Route::delete('/admin/meja/{meja}',
+    [AdminMejaController::class,'destroy'])
+    ->name('admin.meja.destroy');
+
+Route::get('/admin/meja/cetak',
+    [AdminMejaController::class,'cetak'])
+    ->name('admin.meja.cetak');
 
 Route::post('/admin/content/store',
     [WebsiteContentController::class,'store'])
