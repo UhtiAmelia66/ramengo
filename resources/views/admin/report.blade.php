@@ -9,7 +9,6 @@ Laporan 📋
 </h1>
 
 <p class="mt-4">
-
 Halaman laporan admin
 
 </p>
