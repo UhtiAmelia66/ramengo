@@ -26,27 +26,41 @@ class AdminOrderController extends Controller
         $order = Order::findOrFail($id);
 
         $order->update([
-            'status_pesanan' => 'siap_dihidangkan',
+            'status_pesanan' => 'siap_diambil',
             'status' => 'Siap Diambil',
         ]);
 
         return redirect()
             ->back()
-            ->with('success', 'Pesanan siap dihidangkan.');
+            ->with('success', 'Pesanan siap diambil.');
     }
 
-    public function lunas($id): RedirectResponse
+    public function selesai($id): RedirectResponse
     {
         $order = Order::findOrFail($id);
 
         $order->update([
-            'status_pembayaran' => 'lunas',
             'status_pesanan' => 'selesai',
             'status' => 'Selesai',
         ]);
 
         return redirect()
             ->back()
-            ->with('success', 'Pembayaran berhasil ditandai lunas.');
+            ->with('success', 'Pesanan selesai.');
     }
+
+   public function lunas($id): RedirectResponse
+{
+    $order = Order::findOrFail($id);
+
+    $order->update([
+        'status_pembayaran' => 'lunas',
+        'status_pesanan' => 'pending',
+        'status' => 'Menunggu Dimasak',
+    ]);
+
+    return redirect()
+        ->route('cashier.index')
+        ->with('success', 'Pembayaran berhasil. Pesanan dikirim ke dapur.');
+}
 }

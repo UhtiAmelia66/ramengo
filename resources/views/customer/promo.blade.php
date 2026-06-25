@@ -13,8 +13,11 @@
     });
 @endphp
 
-<section class="relative -mx-4 -my-6 min-h-[calc(100vh-4rem)] overflow-hidden bg-[#0F0C08] bg-[url('/images/tokyo-night.jpg')] bg-cover bg-center text-white">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-[#15100b]/85 to-[#0F0C08]"></div>
+<section
+    class="customer-scenic-bg relative -mx-4 -my-6 min-h-[calc(100vh-4rem)] overflow-hidden bg-[#0F0C08] bg-top bg-no-repeat text-white"
+    style="background-image: url('{{ asset('images/japan-lantern-alley-theme.png') }}');"
+>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-[#15100b]/78 to-[#0F0C08]"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div class="mb-10 text-center">

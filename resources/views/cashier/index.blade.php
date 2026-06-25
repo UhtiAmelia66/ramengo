@@ -3,7 +3,7 @@
 @section('content')
 
 <h1 class="mb-8 text-4xl font-bold text-orange-500">
-    Kasir
+    Kasir 💳
 </h1>
 
 @if(session('success'))
@@ -12,51 +12,78 @@
     </div>
 @endif
 
-<div class="space-y-5">
-    @forelse($orders as $order)
-        <div class="rounded-2xl bg-white p-6 shadow-md">
-            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h2 class="text-xl font-bold">
-                        Order #{{ $order->id }}
-                    </h2>
+<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-                    <p class="mt-1 text-gray-600">
-                        Meja: {{ $order->nomor_meja }}
-                    </p>
+@forelse($orders as $order)
 
-                    <p class="mt-1 text-gray-600">
-                        Total: Rp {{ number_format($order->total_harga) }}
-                    </p>
+<div class=" rounded-2xl border-2 border-dashed border-gray-300 bg-white p-6 shadow-lg">
 
-                    <div class="mt-3 flex flex-wrap gap-2">
-                        <span class="rounded-full bg-gray-100 px-4 py-2 text-sm font-bold text-gray-700">
-                            {{ $order->status_pesanan }}
-                        </span>
+    <div class="text-center border-b pb-4">
+        <h2 class="text-2xl font-extrabold">
+            {{ $order->nomor_meja }}
+        </h2>
 
-                        <span class="rounded-full bg-yellow-100 px-4 py-2 text-sm font-bold text-yellow-700">
-                            Belum Lunas
-                        </span>
-                    </div>
-                </div>
+        <p class="text-gray-500">
+            Order #{{ $order->id }}
+        </p>
+    </div>
 
-                <form action="{{ route('cashier.paid', $order->id) }}" method="POST">
-                    @csrf
+    <div class="py-4 space-y-3">
 
-                    <button
-                        type="submit"
-                        class="rounded-xl bg-green-500 px-5 py-2 font-bold text-white hover:bg-green-600"
-                    >
-                        Lunas
-                    </button>
-                </form>
+        @foreach($order->items as $item)
+
+        <div class="flex justify-between">
+
+            <div>
+                <p class="font-semibold">
+                    {{ $item->menu->nama ?? '-' }}
+                </p>
+
+                <p class="text-sm text-gray-500">
+                    {{ $item->quantity }} x Rp {{ number_format($item->harga) }}
+                </p>
             </div>
+
+            <div class="font-bold">
+                Rp {{ number_format($item->quantity * $item->harga) }}
+            </div>
+
         </div>
-    @empty
-        <div class="rounded-xl bg-white p-6 text-center text-gray-600">
-            Belum ada pesanan yang perlu dibayar.
+
+        @endforeach
+
+    </div>
+
+    <div class="border-t pt-4">
+
+        <div class="flex justify-between text-lg font-bold">
+            <span>Total</span>
+            <span>Rp {{ number_format($order->total_harga) }}</span>
         </div>
-    @endforelse
+
+        <div class="mt-4 text-center">
+
+            <span class="rounded-full bg-yellow-100 px-4 py-2 text-sm font-bold text-yellow-700">
+                Menunggu Pembayaran
+            </span>
+
+        </div>
+
+</div>
+    <a
+    href="{{ route('cashier.detail', $order->id) }}"
+    class="mb-3 block w-full rounded-xl bg-orange-500 py-3 text-center text-lg font-bold text-white hover:bg-orange-600"
+>
+    DETAIL STRUK
+    </a>
+@empty
+
+<div class="rounded-xl bg-white p-6 text-center text-gray-600">
+    Belum ada pesanan yang perlu dibayar.
+</div>
+
+@endforelse
+
 </div>
 
 @endsection

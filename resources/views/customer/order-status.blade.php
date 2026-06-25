@@ -52,12 +52,15 @@
                             Pembayaran Selesai, Terima Kasih! 💳
                         </span>
                     @else
-                        <span class="mt-2 inline-flex rounded-full bg-gray-100 px-4 py-2 text-sm font-bold text-gray-700">
-                            Menunggu Pembayaran
-                        </span>
+                     
+    <span class="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 py-2 rounded-xl text-[11px] font-extrabold tracking-wider border border-red-400/30 inline-block uppercase whitespace-nowrap" 
+          style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.7), 0 0 5px rgba(239, 68, 68, 0.5);">
+        Menunggu Pembayaran
+    </span>
+                    </div>
                     @endif
-                </div>
-            </div>
+                    </div>
+                    </div>
 
             <div class="mt-6">
                 <div class="mb-3 text-sm font-semibold text-gray-500">

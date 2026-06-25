@@ -43,23 +43,37 @@
                 </div>
 
                 <div>
-                    @if($order->status_pesanan === 'pending')
-                        <form action="{{ route('kitchen.cook', $order->id) }}" method="POST">
-                            @csrf
+                   @if($order->status_pesanan === 'pending')
 
-                            <button class="rounded-xl bg-orange-500 px-5 py-2 font-bold text-white hover:bg-orange-600">
-                                Masak
-                            </button>
-                        </form>
-                    @elseif($order->status_pesanan === 'dimasak')
-                        <form action="{{ route('kitchen.ready', $order->id) }}" method="POST">
-                            @csrf
+    <form action="{{ route('kitchen.cook', $order->id) }}" method="POST">
+        @csrf
 
-                            <button class="rounded-xl bg-green-500 px-5 py-2 font-bold text-white hover:bg-green-600">
-                                Hidangkan
-                            </button>
-                        </form>
-                    @endif
+        <button class="rounded-xl bg-orange-500 px-5 py-2 font-bold text-white hover:bg-orange-600">
+            Mulai Masak
+        </button>
+    </form>
+
+@elseif($order->status_pesanan === 'dimasak')
+
+    <form action="{{ route('kitchen.ready', $order->id) }}" method="POST">
+        @csrf
+
+        <button class="rounded-xl bg-green-500 px-5 py-2 font-bold text-white hover:bg-green-600">
+            Pesanan Jadi
+        </button>
+    </form>
+
+@elseif($order->status_pesanan === 'siap_diambil')
+
+    <form action="{{ route('kitchen.selesai', $order->id) }}" method="POST">
+        @csrf
+
+        <button class="rounded-xl bg-blue-500 px-5 py-2 font-bold text-white hover:bg-blue-600">
+            Selesai
+        </button>
+    </form>
+
+@endif
                 </div>
             </div>
         </div>

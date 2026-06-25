@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="theme-nav">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -24,7 +24,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex items-center rounded-md border border-amber-500/30 bg-black/40 px-3 py-2 text-sm font-bold leading-4 text-[#F4EFEA]/80 transition ease-in-out duration-150 hover:text-[#D4AF37] focus:outline-none">
 
                             <div>{{ auth()->user()->name }}</div>
 
@@ -62,7 +62,7 @@
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = !open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    class="inline-flex items-center justify-center rounded-md p-2 text-[#F4EFEA]/75 transition duration-150 ease-in-out hover:bg-white/10 hover:text-[#D4AF37] focus:outline-none">
 
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }"
@@ -96,14 +96,14 @@
 
         @auth
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="border-t border-amber-500/25 pb-1 pt-4">
 
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">
+                <div class="text-base font-bold text-[#D4AF37]">
                     {{ auth()->user()->name }}
                 </div>
 
-                <div class="font-medium text-sm text-gray-500">
+                <div class="text-sm font-medium text-[#F4EFEA]/65">
                     {{ auth()->user()->email }}
                 </div>
             </div>

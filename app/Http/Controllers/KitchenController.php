@@ -7,16 +7,20 @@ use App\Models\Order;
 class KitchenController extends Controller
 {
     public function index()
-    {
-        $orders = Order::whereIn('status_pesanan', ['pending', 'dimasak'])
-            ->latest()
-            ->get();
+{
+    $orders = Order::whereIn('status_pesanan', [
+        'pending',
+        'dimasak',
+        'siap_diambil'
+    ])
+    ->latest()
+    ->get();
 
-        return view(
-            'kitchen.index',
-            compact('orders')
-        );
-    }
+    return view(
+        'kitchen.index',
+        compact('orders')
+    );
+}
 
     public function cook($id)
     {

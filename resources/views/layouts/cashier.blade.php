@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 
     <meta charset="UTF-8">
@@ -13,42 +13,37 @@
 
 </head>
 
-<body class="bg-orange-50">
+<body class="japan-theme">
 
-<!-- NAVBAR -->
+<nav class="theme-nav">
 
-<nav class="bg-orange-500 shadow-lg">
+    <div class="container mx-auto flex items-center justify-between px-8 py-5">
 
-    <div class="container mx-auto px-8 py-5 flex justify-between items-center">
-
-        <h1 class="text-3xl font-bold text-white">
-            Kasir 💳
+        <h1 class="text-3xl font-extrabold text-[#D4AF37]">
+            Kasir
         </h1>
 
         <div class="flex items-center gap-8">
 
-            <!-- PEMBAYARAN -->
             <a
                 href="{{ route('cashier.index') }}"
-                class="text-white font-semibold hover:text-orange-100 transition">
+                class="font-semibold text-[#F4EFEA]/85 transition hover:text-[#D4AF37]">
 
-                Pembayaran 💳
+                Pembayaran
             </a>
 
-            <!-- RIWAYAT (FIX) -->
             <a
                 href="{{ route('cashier.history') }}"
-                class="text-white font-semibold hover:text-orange-100 transition">
+                class="font-semibold text-[#F4EFEA]/85 transition hover:text-[#D4AF37]">
 
-                Riwayat 📋
+                Riwayat
             </a>
 
-            <!-- LOGOUT (WAJIB FORM POST) -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
-                        class="bg-white text-orange-500 px-4 py-2 rounded-xl font-bold hover:bg-orange-100 transition">
-                    Logout 🚪
+                        class="theme-btn rounded-xl px-4 py-2 font-bold transition">
+                    Logout
                 </button>
             </form>
 
@@ -57,8 +52,6 @@
     </div>
 
 </nav>
-
-<!-- CONTENT -->
 
 <div class="container mx-auto p-8">
 

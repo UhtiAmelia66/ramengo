@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 
     <meta charset="UTF-8">
@@ -13,51 +13,51 @@
 
 </head>
 
-<body class="bg-orange-50">
+<body class="japan-theme">
 
-<nav class="bg-orange-500 shadow-lg">
+<nav class="theme-nav">
 
-<div class="container mx-auto px-8 py-5 flex justify-between items-center">
+<div class="container mx-auto flex items-center justify-between px-8 py-5">
 
-<h1 class="text-3xl font-bold text-white">
+<h1 class="text-3xl font-extrabold text-[#D4AF37]">
 
-🍜 RamenGo Admin
+&#127836; RamenGo Admin
 
 </h1>
 
 <div class="flex items-center gap-6">
 
-<span class="text-white font-semibold">
+<span class="font-semibold text-[#F4EFEA]/80">
    {{ optional(Auth::user())->name }}
 </span>
 
 <a
 href="{{ route('admin.index') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
-Dashboard 📊
+Dashboard
 
 </a>
 
 <a
 href="{{ route('admin.menu.index') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
-Menu 🍜
+Menu
 
 </a>
 
 <a
 href="{{ route('content.index') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
-Konten Website 📝
+Konten Website
 
 </a>
 
 <a
 href="{{ route('admin.meja.index') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
 Meja
 
@@ -65,17 +65,17 @@ Meja
 
 <a
 href="{{ route('admin.report') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
-Laporan 📋
+Laporan
 
 </a>
 
 <a
 href="{{ route('profile.edit') }}"
-class="text-white font-semibold hover:text-orange-100">
+class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
 
-Profile 👤
+Profile
 
 </a>
 
@@ -84,8 +84,8 @@ Profile 👤
 
     <button
         type="submit"
-        class="bg-white text-orange-500 px-4 py-2 rounded-xl font-bold">
-        Logout 🚪
+        class="theme-btn rounded-xl px-4 py-2 font-bold">
+        Logout
     </button>
 </form>
 

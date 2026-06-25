@@ -129,6 +129,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('kitchen.cook');
     Route::post('/kitchen/ready/{id}', [AdminOrderController::class, 'hidangkan'])
         ->name('kitchen.ready');
+    Route::post('/kitchen/selesai/{id}', [AdminOrderController::class, 'selesai'])
+    ->name('kitchen.selesai');
 
     /*
     |--------------------------------------------------------------------------

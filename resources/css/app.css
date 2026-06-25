@@ -1,3 +1,298 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --ramen-charcoal: #0c0908;
+    --ramen-charcoal-soft: #1b0d0b;
+    --ramen-gold: #d4af37;
+    --ramen-gold-soft: #f6d58a;
+    --ramen-ivory: #f4efea;
+    --ramen-lantern: #d31812;
+    --ramen-lantern-bright: #ff3b1f;
+    --ramen-lantern-glow: #ff6a2a;
+    --ramen-border: rgba(255, 89, 39, 0.34);
+}
+
+.japan-theme {
+    min-height: 100vh;
+    color: var(--ramen-ivory);
+    background:
+        linear-gradient(180deg, rgba(12, 9, 8, 0.18) 0%, rgba(20, 9, 8, 0.72) 44%, var(--ramen-charcoal) 100%),
+        radial-gradient(circle at 9% 22%, rgba(255, 64, 31, 0.5), transparent 24%),
+        radial-gradient(circle at 53% 11%, rgba(255, 106, 42, 0.42), transparent 30%),
+        radial-gradient(circle at 87% 22%, rgba(255, 59, 31, 0.46), transparent 28%),
+        url('/images/japan-lantern-alley-theme.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.japan-theme::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, rgba(255, 59, 31, 0.22), transparent 18%, transparent 78%, rgba(255, 106, 42, 0.2)),
+        radial-gradient(circle at 24% 22%, rgba(255, 59, 31, 0.28), transparent 22%),
+        radial-gradient(circle at 74% 18%, rgba(255, 106, 42, 0.25), transparent 24%),
+        radial-gradient(circle at 50% -10%, rgba(255, 209, 102, 0.2), transparent 34%);
+}
+
+.theme-nav {
+    border-bottom: 1px solid rgba(255, 89, 39, 0.5);
+    background: linear-gradient(180deg, rgba(20, 8, 7, 0.92), rgba(9, 6, 5, 0.88));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42), 0 0 32px rgba(255, 59, 31, 0.22);
+    backdrop-filter: blur(18px);
+}
+
+.theme-card,
+.japan-theme .bg-white,
+.japan-theme .bg-gray-50,
+.japan-theme .bg-orange-50 {
+    color: var(--ramen-ivory) !important;
+    border-color: var(--ramen-border) !important;
+    background: linear-gradient(180deg, rgba(38, 14, 10, 0.78), rgba(8, 6, 5, 0.76)) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45), 0 0 34px rgba(255, 59, 31, 0.16) !important;
+    backdrop-filter: blur(16px);
+}
+
+.theme-panel {
+    border: 1px solid var(--ramen-border);
+    background: linear-gradient(180deg, rgba(38, 14, 10, 0.84), rgba(8, 6, 5, 0.78));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45), 0 0 38px rgba(255, 59, 31, 0.18);
+    backdrop-filter: blur(16px);
+}
+
+.theme-heading,
+.japan-theme h1,
+.japan-theme h2,
+.japan-theme h3 {
+    color: var(--ramen-ivory);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55), 0 0 18px rgba(255, 59, 31, 0.18);
+}
+
+.theme-gold,
+.japan-theme .text-orange-500,
+.japan-theme .text-orange-600,
+.japan-theme .text-orange-700,
+.japan-theme .text-gray-900,
+.japan-theme .text-gray-800 {
+    color: var(--ramen-gold) !important;
+}
+
+.japan-theme .text-gray-700,
+.japan-theme .text-gray-600,
+.japan-theme .text-gray-500 {
+    color: rgba(244, 239, 234, 0.72) !important;
+}
+
+.theme-btn,
+.japan-theme .bg-orange-500,
+.japan-theme .bg-gray-800,
+.japan-theme button[type="submit"],
+.japan-theme .bg-red-500 {
+    color: var(--ramen-ivory) !important;
+    border: 1px solid rgba(246, 213, 138, 0.5) !important;
+    background: linear-gradient(180deg, var(--ramen-lantern-bright), var(--ramen-lantern) 55%, #800906) !important;
+    box-shadow: 0 0 22px rgba(255, 59, 31, 0.48), 0 10px 28px rgba(185, 21, 15, 0.42), inset 0 1px 0 rgba(255, 220, 150, 0.46) !important;
+}
+
+.theme-btn:hover,
+.japan-theme .bg-orange-500:hover,
+.japan-theme button[type="submit"]:hover {
+    background: linear-gradient(180deg, #ff6440, #e21a12 55%, #930b07) !important;
+}
+
+.theme-outline {
+    border: 1px solid rgba(255, 89, 39, 0.45);
+    color: var(--ramen-gold-soft);
+    background: rgba(15, 12, 8, 0.5);
+}
+
+.japan-theme input,
+.japan-theme textarea,
+.japan-theme select {
+    color: var(--ramen-ivory) !important;
+    border-color: rgba(255, 89, 39, 0.38) !important;
+    background-color: rgba(8, 6, 5, 0.72) !important;
+}
+
+.japan-theme .border-gray-100,
+.japan-theme .border-gray-200,
+.japan-theme .border-gray-300,
+.japan-theme .border-orange-100,
+.japan-theme .border-orange-200 {
+    border-color: rgba(255, 89, 39, 0.28) !important;
+}
+
+.japan-theme .text-indigo-600,
+.japan-theme .hover\:text-gray-900:hover,
+.japan-theme .hover\:text-gray-700:hover {
+    color: var(--ramen-gold) !important;
+}
+
+.japan-theme .focus\:ring-indigo-500:focus,
+.japan-theme .focus\:border-indigo-500:focus {
+    --tw-ring-color: rgba(212, 175, 55, 0.55) !important;
+    border-color: var(--ramen-gold) !important;
+}
+
+.japan-theme input::placeholder,
+.japan-theme textarea::placeholder {
+    color: rgba(244, 239, 234, 0.45);
+}
+
+.japan-theme table,
+.japan-theme th,
+.japan-theme td {
+    border-color: rgba(212, 175, 55, 0.22) !important;
+}
+
+.japan-theme th {
+    color: var(--ramen-gold-soft) !important;
+    background: rgba(185, 21, 15, 0.18) !important;
+}
+
+.japan-theme .from-orange-500,
+.japan-theme .from-orange-400 {
+    --tw-gradient-from: var(--ramen-lantern-bright) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgba(255, 59, 31, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.japan-theme .via-orange-500,
+.japan-theme .via-red-500 {
+    --tw-gradient-to: rgba(255, 106, 42, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--ramen-lantern-glow) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+.japan-theme .to-orange-400,
+.japan-theme .to-yellow-400,
+.japan-theme .to-red-500 {
+    --tw-gradient-to: #5f0b08 var(--tw-gradient-to-position) !important;
+}
+
+.japan-theme .bg-orange-100,
+.japan-theme .bg-orange-200 {
+    color: var(--ramen-gold) !important;
+    background: rgba(212, 175, 55, 0.12) !important;
+}
+
+.japan-theme .shadow-orange-100\/70,
+.japan-theme .shadow-orange-200 {
+    --tw-shadow-color: rgba(185, 21, 15, 0.35) !important;
+    --tw-shadow: var(--tw-shadow-colored) !important;
+}
+
+.customer-theme {
+    background-size: cover, cover, cover, cover, min(1366px, 100vw) auto;
+    background-position: top center;
+    image-rendering: auto;
+}
+
+.customer-theme::before {
+    background:
+        linear-gradient(180deg, rgba(12, 9, 8, 0.04) 0%, rgba(12, 9, 8, 0.18) 36%, rgba(12, 9, 8, 0.78) 100%),
+        radial-gradient(circle at 11% 20%, rgba(255, 59, 31, 0.36), transparent 22%),
+        radial-gradient(circle at 51% 16%, rgba(255, 106, 42, 0.32), transparent 24%),
+        radial-gradient(circle at 88% 26%, rgba(255, 59, 31, 0.3), transparent 24%);
+}
+
+.customer-theme .theme-nav {
+    border-bottom-color: rgba(255, 88, 40, 0.62);
+    background: linear-gradient(180deg, rgba(25, 8, 7, 0.82), rgba(8, 5, 4, 0.78));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38), 0 0 44px rgba(255, 59, 31, 0.28);
+    backdrop-filter: none;
+}
+
+.customer-scenic-bg {
+    background-size: min(1366px, 100vw) auto;
+    background-position: top center;
+}
+
+@media (min-width: 1367px) {
+    .customer-theme,
+    .customer-scenic-bg {
+        background-size: cover, cover, cover, cover, 1366px auto;
+    }
+
+    .customer-scenic-bg {
+        background-size: 1366px auto;
+    }
+}
+
+.customer-glass-panel,
+.customer-menu-card {
+    border: 1px solid rgba(255, 91, 42, 0.42);
+    background: linear-gradient(180deg, rgba(39, 12, 9, 0.58), rgba(8, 6, 5, 0.68));
+    box-shadow:
+        0 22px 58px rgba(0, 0, 0, 0.38),
+        0 0 28px rgba(255, 59, 31, 0.22),
+        inset 0 1px 0 rgba(246, 213, 138, 0.14);
+    backdrop-filter: blur(3px);
+}
+
+.customer-menu-card:hover {
+    border-color: rgba(255, 106, 42, 0.82);
+    background: linear-gradient(180deg, rgba(52, 14, 10, 0.66), rgba(8, 6, 5, 0.72));
+    box-shadow:
+        0 28px 68px rgba(0, 0, 0, 0.42),
+        0 0 42px rgba(255, 59, 31, 0.36),
+        inset 0 1px 0 rgba(246, 213, 138, 0.18);
+}
+
+.customer-action-btn,
+.customer-add-btn {
+    color: var(--ramen-ivory) !important;
+    border: 1px solid rgba(255, 218, 132, 0.58) !important;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 216, 120, 0.45), transparent 34%),
+        linear-gradient(180deg, #ff5a2e 0%, #f02418 45%, #9d0b08 100%) !important;
+    box-shadow:
+        0 0 18px rgba(255, 64, 31, 0.72),
+        0 0 34px rgba(255, 106, 42, 0.38),
+        inset 0 1px 0 rgba(255, 230, 165, 0.6) !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.52);
+}
+
+.customer-action-btn:hover,
+.customer-add-btn:hover {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 226, 145, 0.58), transparent 34%),
+        linear-gradient(180deg, #ff7040 0%, #ff2f1f 48%, #b90f0b 100%) !important;
+    box-shadow:
+        0 0 24px rgba(255, 64, 31, 0.86),
+        0 0 46px rgba(255, 106, 42, 0.5),
+        inset 0 1px 0 rgba(255, 236, 184, 0.72) !important;
+}
+
+.customer-filter-btn {
+    border: 1px solid rgba(255, 91, 42, 0.36);
+    color: rgba(244, 239, 234, 0.88);
+    background: rgba(12, 7, 6, 0.54);
+    box-shadow: 0 0 18px rgba(255, 59, 31, 0.14);
+}
+
+.customer-filter-btn:hover {
+    border-color: rgba(255, 106, 42, 0.78);
+    color: var(--ramen-gold-soft);
+    background: rgba(211, 24, 18, 0.22);
+    box-shadow: 0 0 26px rgba(255, 59, 31, 0.32);
+}
+
+.customer-qty-control,
+.customer-floating-cart {
+    border: 1px solid rgba(255, 91, 42, 0.48);
+    background: linear-gradient(180deg, rgba(42, 12, 9, 0.72), rgba(8, 6, 5, 0.78));
+    box-shadow: 0 0 28px rgba(255, 59, 31, 0.26), 0 18px 44px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.customer-floating-cart:hover {
+    border-color: rgba(255, 218, 132, 0.66);
+    box-shadow: 0 0 42px rgba(255, 59, 31, 0.42), 0 22px 56px rgba(0, 0, 0, 0.44);
+}
