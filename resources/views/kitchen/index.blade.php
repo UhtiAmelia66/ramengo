@@ -3,7 +3,7 @@
 @section('content')
 
 <h1 class="mb-8 text-4xl font-bold text-orange-500">
-    Kitchen
+    Pesanan Masuk 🍜
 </h1>
 
 @if(session('success'))
@@ -13,75 +13,56 @@
 @endif
 
 <div class="space-y-5">
+
     @forelse($orders as $order)
-        <div class="rounded-2xl bg-white p-6 shadow-md">
-            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h2 class="text-xl font-bold">
-                        Order #{{ $order->id }}
-                    </h2>
 
-                    <p class="mt-1 text-gray-600">
-                        Meja: {{ $order->nomor_meja }}
-                    </p>
+    <div class="rounded-2xl bg-white p-6 shadow-md">
 
-                    <p class="mt-1 text-gray-600">
-                        Total: Rp {{ number_format($order->total_harga) }}
-                    </p>
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
-                    <div class="mt-3">
-                        @if($order->status_pesanan === 'pending')
-                            <span class="rounded-full bg-yellow-100 px-4 py-2 text-sm font-bold text-yellow-700">
-                                Menunggu Antrean Dapur
-                            </span>
-                        @elseif($order->status_pesanan === 'dimasak')
-                            <span class="rounded-full bg-orange-100 px-4 py-2 text-sm font-bold text-orange-700">
-                                Sedang Dimasak
-                            </span>
-                        @endif
-                    </div>
-                </div>
+            <div>
 
-                <div>
-                   @if($order->status_pesanan === 'pending')
+                <h2 class="text-xl font-bold">
+                    Order #{{ $order->id }}
+                </h2>
 
-    <form action="{{ route('kitchen.cook', $order->id) }}" method="POST">
-        @csrf
+                <p class="mt-1 text-gray-600">
+                    Meja: {{ $order->nomor_meja }}
+                </p>
 
-        <button class="rounded-xl bg-orange-500 px-5 py-2 font-bold text-white hover:bg-orange-600">
-            Mulai Masak
-        </button>
-    </form>
+                <p class="mt-1 text-gray-600">
+                    Total: Rp {{ number_format($order->total_harga) }}
+                </p>
 
-@elseif($order->status_pesanan === 'dimasak')
+                <span class="mt-3 inline-block rounded-full bg-yellow-100 px-4 py-2 text-sm font-bold text-yellow-700">
+                    Menunggu Dimasak
+                </span>
 
-    <form action="{{ route('kitchen.ready', $order->id) }}" method="POST">
-        @csrf
-
-        <button class="rounded-xl bg-green-500 px-5 py-2 font-bold text-white hover:bg-green-600">
-            Pesanan Jadi
-        </button>
-    </form>
-
-@elseif($order->status_pesanan === 'siap_diambil')
-
-    <form action="{{ route('kitchen.selesai', $order->id) }}" method="POST">
-        @csrf
-
-        <button class="rounded-xl bg-blue-500 px-5 py-2 font-bold text-white hover:bg-blue-600">
-            Selesai
-        </button>
-    </form>
-
-@endif
-                </div>
             </div>
+
+            <form action="{{ route('kitchen.cook', $order->id) }}" method="POST">
+                @csrf
+
+                <button
+                    type="submit"
+                    class="rounded-xl bg-orange-500 px-5 py-2 font-bold text-white hover:bg-orange-600">
+                    Mulai Masak
+                </button>
+
+            </form>
+
         </div>
+
+    </div>
+
     @empty
-        <div class="rounded-xl bg-white p-6 text-center text-gray-600">
-            Belum ada pesanan untuk dapur.
-        </div>
+
+    <div class="rounded-xl bg-white p-6 text-center text-gray-600">
+        Belum ada pesanan masuk.
+    </div>
+
     @endforelse
+
 </div>
 
 @endsection

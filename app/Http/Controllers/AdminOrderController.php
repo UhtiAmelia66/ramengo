@@ -22,32 +22,32 @@ class AdminOrderController extends Controller
     }
 
     public function hidangkan($id): RedirectResponse
-    {
-        $order = Order::findOrFail($id);
+{
+    $order = Order::findOrFail($id);
 
-        $order->update([
-            'status_pesanan' => 'siap_diambil',
-            'status' => 'Siap Diambil',
-        ]);
+    $order->update([
+        'status_pesanan' => 'siap_diambil',
+        'status' => 'Siap Diambil',
+    ]);
 
-        return redirect()
-            ->back()
-            ->with('success', 'Pesanan siap diambil.');
-    }
+    return redirect()
+        ->route('kitchen.cooking')
+        ->with('success', 'Pesanan siap diambil.');
+}
 
-    public function selesai($id): RedirectResponse
-    {
-        $order = Order::findOrFail($id);
+   public function selesai($id): RedirectResponse
+{
+    $order = Order::findOrFail($id);
 
-        $order->update([
-            'status_pesanan' => 'selesai',
-            'status' => 'Selesai',
-        ]);
+    $order->update([
+        'status_pesanan' => 'selesai',
+        'status' => 'Selesai',
+    ]);
 
-        return redirect()
-            ->back()
-            ->with('success', 'Pesanan selesai.');
-    }
+    return redirect()
+        ->route('kitchen.history')
+        ->with('success', 'Pesanan selesai.');
+}
 
    public function lunas($id): RedirectResponse
 {

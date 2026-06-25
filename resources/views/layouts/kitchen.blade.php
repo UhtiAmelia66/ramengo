@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css'])
-
     <title>Kitchen - RamenGo</title>
-
 </head>
 
 <body class="japan-theme">
 
 <nav class="theme-nav">
-<a
-href="{{ route('kitchen.index') }}"
-class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
-Pesanan Masuk
-</a>
+    <div class="container mx-auto flex items-center justify-between px-8 py-5">
 
-<a
-href="{{ route('kitchen.cooking') }}"
-class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
-Sedang Dimasak
-</a>
+        <h1 class="text-3xl font-extrabold text-[#D4AF37]">
+            Kitchen
+        </h1>
 
-<a
-href="{{ route('kitchen.history') }}"
-class="font-semibold text-[#F4EFEA]/85 hover:text-[#D4AF37]">
-Riwayat
-</a>
+        <div class="flex items-center gap-8">
 
-<div class="container mx-auto flex items-center justify-between px-8 py-5">
+            <a href="{{ route('kitchen.index') }}"
+               class="font-semibold text-[#F4EFEA] hover:text-[#D4AF37]">
+                Pesanan Masuk
+            </a>
 
-<h1 class="text-3xl font-extrabold text-[#D4AF37]">
+            <a href="{{ route('kitchen.cooking') }}"
+               class="font-semibold text-[#F4EFEA] hover:text-[#D4AF37]">
+                Sedang Dimasak
+            </a>
 
-Kitchen
+            <a href="{{ route('kitchen.history') }}"
+               class="font-semibold text-[#F4EFEA] hover:text-[#D4AF37]">
+                Riwayat
+            </a>
 
-</h1>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="theme-btn rounded-xl px-4 py-2 font-bold">
+                    Logout
+                </button>
+            </form>
 
+        </div>
 
-<div class="flex items-center gap-8">
-
-<
-
-</div>
-
-</div>
-
+    </div>
 </nav>
 
-
 <div class="container mx-auto p-8">
-
-@yield('content')
-
+    @yield('content')
 </div>
 
 </body>

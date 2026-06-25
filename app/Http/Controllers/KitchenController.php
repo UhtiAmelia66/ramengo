@@ -3,58 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\View\View;
 
 class KitchenController extends Controller
 {
-    public function index()
+    // Pesanan Masuk
+    public function index(): View
+    {
+        $orders = Order::where('status_pesanan', 'pending')
+            ->latest()
+            ->get();
+
+        return view('kitchen.index', compact('orders'));
+    }
+
+    // Sedang Dimasak
+   public function cooking()
 {
     $orders = Order::whereIn('status_pesanan', [
-        'pending',
         'dimasak',
         'siap_diambil'
     ])
     ->latest()
     ->get();
 
-    return view(
-        'kitchen.index',
-        compact('orders')
-    );
+    return view('kitchen.cooking', compact('orders'));
 }
 
-    public function cook($id)
+    // Riwayat
+    public function history(): View
     {
-        $order = Order::findOrFail($id);
+        $orders = Order::where('status_pesanan', 'selesai')
+            ->latest()
+            ->get();
 
-        $order->update([
-
-            'status' => 'Sedang Dimasak'
-
-        ]);
-
-        return redirect()
-            ->back()
-            ->with(
-                'success',
-                'Pesanan mulai dimasak'
-            );
-    }
-
-    public function ready($id)
-    {
-        $order = Order::findOrFail($id);
-
-        $order->update([
-
-            'status' => 'Siap Diambil'
-
-        ]);
-
-        return redirect()
-            ->back()
-            ->with(
-                'success',
-                'Pesanan siap'
-            );
+        return view('kitchen.history', compact('orders'));
     }
 }
