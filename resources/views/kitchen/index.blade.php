@@ -15,6 +15,13 @@
 <div class="space-y-5">
 
     @forelse($orders as $order)
+        <div class="space-y-6">
+        <div class="rounded-xl border border-orange-100 bg-white shadow-lg shadow-orange-100/60">
+            <div class="border-b border-orange-100 px-6 py-5">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-orange-100 text-sm font-bold text-orange-600">
+                        PI
+                    </div>
 
     <div class="rounded-2xl bg-white p-6 shadow-md">
 

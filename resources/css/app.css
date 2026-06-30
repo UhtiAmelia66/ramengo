@@ -19,7 +19,7 @@
     color: var(--ramen-ivory);
     background: 
         linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(12, 9, 8, 0.6) 100%),
-        url('images/japan-lantern-alley-theme.png') ;
+        url('/images/japan-lantern-alley-theme.png') ;
     background-size: cover ; 
     background-position: center center ; /* Memaksa gambar tetap di tengah */
     background-repeat: no-repeat ;
@@ -34,7 +34,7 @@
     min-height: 100vh;
     color: var(--ramen-ivory);
     background:
-        linear-gradient(180deg, rgba(24, 10, 7, 0.96) 0%, rgba(21, 8, 6, 0.95) 30%, rgba(12, 5, 4, 0.98) 100%),
+        linear-gradient(180deg, rgba(38, 25, 22, 0.96) 0%, rgba(21, 8, 6, 0.95) 30%, rgba(12, 5, 4, 0.98) 100%),
         radial-gradient(circle at 10% 10%, rgba(255, 184, 68, 0.18), transparent 18%),
         radial-gradient(circle at 90% 12%, rgba(255, 82, 38, 0.18), transparent 22%),
         url('/images/japan-lantern-alley-theme.png');

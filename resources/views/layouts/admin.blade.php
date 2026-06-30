@@ -22,13 +22,11 @@ THEME ADMIN
 
 body.japan-theme{
 
-background:
-linear-gradient(
-180deg,
-#120402,
-#1A0502,
-#250903
-);
+background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(12, 9, 8, 0.7) 100%), url('{{ asset('images/japan-lantern-alley-theme.png') }}') !important;
+background-size: cover !important;
+background-position: center center !important;
+background-repeat: no-repeat !important;
+background-attachment: fixed !important;
 
 color:#FFF7ED;
 
