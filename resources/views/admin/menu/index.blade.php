@@ -80,7 +80,7 @@
                     data-kategori="{{ $kategoriFilter }}">
                     <div class="relative h-52 bg-orange-100">
                         <img
-                            src="{{ asset('storage/' . $item->gambar) }}"
+                            src="{{ $item->gambar_url }}"
                             alt="{{ $item->nama }}"
                             class="h-full w-full object-cover">
 

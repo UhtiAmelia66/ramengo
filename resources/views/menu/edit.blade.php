@@ -137,7 +137,7 @@
                             </p>
 
                             <img
-                                src="{{ asset('storage/' . $menu->gambar) }}"
+                                src="{{ $menu->gambar_url }}"
                                 alt="{{ $menu->nama }}"
                                 class="w-40 rounded-lg shadow">
                         </div>

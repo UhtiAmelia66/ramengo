@@ -38,7 +38,7 @@
                     <div class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-orange-100 transition hover:-translate-y-1 hover:shadow-xl">
                         <div class="relative h-52 bg-gray-100">
                             <img
-                                src="{{ asset('storage/' . $item->gambar) }}"
+                                src="{{ $item->gambar_url }}"
                                 alt="{{ $item->nama }}"
                                 class="h-full w-full object-cover">
 
