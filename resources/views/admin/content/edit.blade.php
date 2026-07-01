@@ -88,12 +88,12 @@
                 >
                     <img
                         id="posterPreview"
-                        src="{{ $content->poster_path ? asset('storage/' . $content->poster_path) : '' }}"
+                        src="{{ $content->poster_url ?? '' }}"
                         alt="Preview poster lama"
-                        class="{{ $content->poster_path ? '' : 'hidden' }} mb-5 max-h-96 w-full rounded-xl object-contain shadow-lg"
+                        class="{{ $content->poster_url ? '' : 'hidden' }} mb-5 max-h-96 w-full rounded-xl object-contain shadow-lg"
                     >
 
-                    <div id="posterPlaceholder" class="{{ $content->poster_path ? 'hidden' : '' }}">
+                    <div id="posterPlaceholder" class="{{ $content->poster_url ? 'hidden' : '' }}">
                         <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-500 text-3xl text-white shadow-lg shadow-orange-200">
                             +
                         </div>

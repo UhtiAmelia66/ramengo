@@ -26,6 +26,17 @@
         </div>
     @endif
 
+    @if($errors->any())
+        <div class="rounded-2xl border border-red-200 bg-red-50 px-6 py-4 text-red-700 shadow-sm">
+            <p class="font-extrabold">Ada data yang perlu diperbaiki:</p>
+            <ul class="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div class="rounded-2xl border-2 border-orange-200 bg-white p-6 shadow-xl shadow-orange-100/70">
             <div class="mb-6">
@@ -50,8 +61,8 @@
                         class="w-full rounded-xl border border-orange-200 bg-orange-50/40 px-4 py-3 font-semibold text-gray-800 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200"
                         required
                     >
-                        <option value="promo">Potongan Harga (Promo)</option>
-                        <option value="event">Acara SpesialRestoran (Event)</option>
+                        <option value="promo" @selected(old('halaman') === 'promo')>Potongan Harga (Promo)</option>
+                        <option value="event" @selected(old('halaman') === 'event')>Acara Spesial Restoran (Event)</option>
                     </select>
                 </div>
 
@@ -169,9 +180,9 @@
 
                     <article class="group overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-orange-100 transition hover:-translate-y-1 hover:shadow-2xl">
                         <div class="relative h-72 bg-orange-100">
-                            @if($content->poster_path)
+                            @if($content->poster_url)
                                 <img
-                                    src="{{ asset('storage/' . $content->poster_path) }}"
+                                    src="{{ $content->poster_url }}"
                                     alt="{{ $content->judul }}"
                                     class="h-full w-full object-cover"
                                 >
@@ -193,13 +204,13 @@
                             <h3 class="text-2xl font-extrabold text-gray-900">{{ $content->judul }}</h3>
                             <p class="mt-3 line-clamp-4 flex-1 leading-7 text-gray-600">{{ $content->isi }}</p>
 
-                            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+                            <div class="mt-6 grid gap-3 sm:grid-cols-2">
                                 <a
-    href="{{ route('admin.content.edit', $content->id) }}"
-    class="block w-full rounded-xl bg-orange-500 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-orange-600"
->
-    Edit
-</a>
+                                    href="{{ route('admin.content.edit', $content->id) }}"
+                                    class="block w-full rounded-xl bg-orange-500 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-orange-600"
+                                >
+                                    Edit
+                                </a>
 
                                 <form
                                     action="{{ route('content.delete', $content->id) }}"
